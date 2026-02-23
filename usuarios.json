@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "nome": "Administrador",
+    "email": "deliciasdacs@admin.com",
+    "senha": "adm123",
+    "tipo": "admin"
+  },
+  {
+    "id": 2,
+    "nome": "muryllo hernrique cardoso callejas costa",
+    "email": "murylloh207@gmail.com",
+    "senha": "muryllo000",
+    "telefone": "1999763913",
+    "nascimento": "",
+    "cpf": "",
+    "genero": "",
+    "tipo": "cliente",
+    "criadoEm": "2026-02-23T02:11:27.813Z"
+  },
+  {
+    "id": 3,
+    "nome": "murylloh206",
+    "email": "murylloh206@gmail.com",
+    "senha": "muryllo66",
+    "telefone": "",
+    "nascimento": "",
+    "cpf": "",
+    "genero": "",
+    "tipo": "cliente",
+    "criadoEm": "2026-02-23T03:08:47.705Z"
+  }
+]

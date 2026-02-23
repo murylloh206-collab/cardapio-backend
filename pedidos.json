@@ -1,0 +1,20 @@
+[
+  {
+    "usuarioId": 3,
+    "data": "2026-02-23T03:09:37.135Z",
+    "status": "aguardando",
+    "total": 55,
+    "itens": [
+      {
+        "nome": "Pizza Frango com Catupiry",
+        "quantity": 1,
+        "price": 55,
+        "flavor": null,
+        "size": "medium",
+        "extras": []
+      }
+    ],
+    "observacao": "Pedido via WhatsApp",
+    "id": 1
+  }
+]

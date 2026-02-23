@@ -1,0 +1,22 @@
+[
+  {
+    "codigo": "FOMEZERO",
+    "tipo": "combo",
+    "descricao": "2 Pizzas + Coca-Cola 2L por R$ 95,00",
+    "ativo": true,
+    "categoria": "pizzas",
+    "quantidade": 2,
+    "valor_combo": 95,
+    "id": 5
+  },
+  {
+    "codigo": "COMBOESFIHA",
+    "tipo": "combo",
+    "descricao": "6 ESFIHAS POR 28R$",
+    "ativo": true,
+    "categoria": "esfihas",
+    "quantidade": 6,
+    "valor_combo": 28,
+    "id": 6
+  }
+]
