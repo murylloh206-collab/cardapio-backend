@@ -149,52 +149,92 @@ app.delete('/api/produtos/:id', async (req, res) => {
 });
 
 // ============================================
-// ROTAS DE USUÁRIOS
+// ROTA DE CADASTRO - VERSÃO DEBUG
 // ============================================
 app.post('/api/usuarios/cadastro', async (req, res) => {
     try {
+        console.log('🔵 ROTA /api/usuarios/cadastro ACESSADA');
+        console.log('📦 Body recebido:', JSON.stringify(req.body, null, 2));
+        
         const { nome, email, senha, telefone } = req.body;
         
-        if (!nome || !email || !senha) {
-            return res.status(400).json({ erro: 'Todos os campos são obrigatórios' });
+        console.log('📝 Dados extraídos:', { nome, email, senha, telefone });
+        
+        // Validação mais flexível para debug
+        if (!nome) {
+            console.log('❌ Erro: nome não fornecido');
+            return res.status(400).json({ erro: 'Nome é obrigatório' });
+        }
+        
+        if (!email) {
+            console.log('❌ Erro: email não fornecido');
+            return res.status(400).json({ erro: 'Email é obrigatório' });
+        }
+        
+        if (!senha) {
+            console.log('❌ Erro: senha não fornecida');
+            return res.status(400).json({ erro: 'Senha é obrigatória' });
         }
         
         // Verificar se email já existe
+        console.log('🔍 Verificando se email já existe:', email);
+        
         const { data: existe, error: erroExiste } = await supabase
             .from('usuarios')
             .select('id')
             .eq('email', email);
         
-        if (erroExiste) throw erroExiste;
+        if (erroExiste) {
+            console.error('❌ Erro ao verificar email:', erroExiste);
+            return res.status(500).json({ erro: 'Erro ao verificar email', detalhes: erroExiste });
+        }
+        
+        console.log('📊 Resultado verificação:', existe);
         
         if (existe && existe.length > 0) {
+            console.log('❌ Email já cadastrado');
             return res.status(400).json({ erro: 'Email já cadastrado' });
         }
         
+        // Criar novo usuário
         const novoUsuario = {
             nome,
             email,
             senha,
             telefone: telefone || '',
-            nascimento: '',
-            cpf: '',
-            genero: '',
             tipo: 'cliente',
             criadoEm: new Date().toISOString()
         };
+        
+        console.log('💾 Inserindo usuário:', novoUsuario);
         
         const { data, error } = await supabase
             .from('usuarios')
             .insert([novoUsuario])
             .select();
         
-        if (error) throw error;
+        if (error) {
+            console.error('❌ Erro do Supabase:', error);
+            return res.status(500).json({ 
+                erro: 'Erro do Supabase', 
+                detalhes: error.message,
+                code: error.code
+            });
+        }
+        
+        console.log('✅ Usuário cadastrado com sucesso:', data[0]);
         
         const { senha: _, ...usuarioSemSenha } = data[0];
         res.status(201).json(usuarioSemSenha);
+        
     } catch (erro) {
-        console.error('Erro:', erro);
-        res.status(500).json({ erro: 'Erro ao salvar usuário' });
+        console.error('❌ Erro inesperado:', erro);
+        console.error('Stack trace:', erro.stack);
+        res.status(500).json({ 
+            erro: 'Erro interno no servidor',
+            mensagem: erro.message,
+            stack: erro.stack 
+        });
     }
 });
 

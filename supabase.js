@@ -1,8 +1,7 @@
 const { createClient } = require('@supabase/supabase-js');
 
-const supabaseUrl = 'https://kqxkbzwbcggwdcvkmx.supabase.co';
-const supabaseKey = 'sb_publishable_EoYaLZeO3oX44My-vSfbpw_iqVPsh4X';
-
+const supabaseUrl = 'https://acbydgxfeejppogdulcw.supabase.co';
+const supabaseKey = 'sb_publishable_8hv1iq5wsRvjb25TP7jndQ_iGTeVhYJ';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 module.exports = supabase;
