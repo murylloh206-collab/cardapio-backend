@@ -3,8 +3,7 @@ const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
@@ -750,7 +749,7 @@ app.delete('/api/pedidos/:id', async (req, res) => {
 // ============================================
 // INICIAR SERVIDOR
 // ============================================
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Servidor rodando na porta ${PORT} com Supabase!`);
     console.log(`📦 Produtos: http://localhost:${PORT}/api/produtos`);
     console.log(`👤 Usuários: http://localhost:${PORT}/api/usuarios`);
